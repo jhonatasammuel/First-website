@@ -1,0 +1,52 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+}
+
+.theme {
+  font-size: 40px;
+}
+
+.first {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.paragraph {
+  padding-right: 20px;
+  flex-basis: 400px;
+}
+
+.js-paragraph-style {
+  color: aliceblue;
+}
+
+.js-body-background {
+  background-color: black;
+}
+
+.js-theme {
+  color: aliceblue;
+}
+
+.div-fieldset {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: justify;
+  hyphens: auto;
+}
+
+fieldset {
+  max-width: 900px;
+  min-width: 400px;
+}
+
+.enviar-button {
+  margin-top: 20px;
+  display: block;
+}
