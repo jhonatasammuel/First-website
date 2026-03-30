@@ -30,7 +30,4 @@ const clearFields = () => {
   });
 };
 
-const modeButton = document.querySelector(".js-mode-button");
-modeButton.addEventListener("click", changeAppereance);
-const enviarButton = document.querySelector(".js-enviar-button");
-enviarButton.addEventListener("click", clearFields);
+export { changeAppereance, clearFields };
