@@ -50,3 +50,7 @@ fieldset {
   margin-top: 20px;
   display: block;
 }
+
+.content {
+  font-family: "Times New Roman", Times, serif;
+}
