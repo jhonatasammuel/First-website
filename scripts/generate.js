@@ -175,13 +175,37 @@ class Cart {
   }
 
   addProduct(id) {
-    const product = info.find((product) => {
-      return product.id === id;
-    });
+    const existsInCartItems =
+      this.cartItems.find((item) => {
+        return item.id === id;
+      }) || false;
 
-    this.cartItems.push(product);
+    if (existsInCartItems) {
+      const newQuantity = existsInCartItems.quantity + 1;
+
+      const index = this.cartItems.findIndex((product) => {
+        return product.id === id;
+      });
+
+      this.cartItems[index].quantity = newQuantity;
+    } else {
+      const product = info.find((product) => {
+        return product.id === id;
+      });
+
+      const cartItem = {
+        id: product.id,
+        name: product.name,
+        priceCents: product.priceCents,
+        quantity: 1,
+      };
+
+      this.cartItems.push(cartItem);
+    }
 
     this.saveToStorage();
+
+    console.log(this.cartItems);
   }
 
   removeProduct(id) {
@@ -189,13 +213,18 @@ class Cart {
       return product.id === id;
     });
 
-    console.log(index);
-
     if (index !== -1) {
-      this.cartItems.splice(index, 1);
+      const newQuantity = this.cartItems[index].quantity - 1;
 
+      if (newQuantity === 0) {
+        this.cartItems.splice(index, 1);
+      } else {
+        this.cartItems[index].quantity = newQuantity;
+      }
       this.saveToStorage();
     }
+
+    console.log(this.cartItems);
   }
 }
 
@@ -218,4 +247,25 @@ function generateHtml() {
   document.querySelector(".js-content").innerHTML = html;
 }
 
-export { generateHtml, cart };
+function generateHtmlCart() {
+  let html = "";
+
+  let totalPedidoCents = 0;
+
+  cart.cartItems.forEach((cartItem) => {
+    html += `<div class="cart-content-item js-cart-content-item paragraph">
+        <p>Nome: ${cartItem.name}</p>
+        <p>Quantity: ${cartItem.quantity}</p>
+        <p>Valor unitário: $${cartItem.priceCents / 100}</p>
+      </div>
+      `;
+
+    totalPedidoCents += cartItem.priceCents * cartItem.quantity;
+  });
+
+  html += `<p class="paragraph">Valor total do pedido: $${totalPedidoCents / 100}</p>`;
+
+  document.querySelector(".js-cart-content-container").innerHTML = html;
+}
+
+export { generateHtml, cart, generateHtmlCart };

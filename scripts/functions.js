@@ -10,6 +10,9 @@ const changeAppereance = () => {
     document.querySelector("fieldset").classList.add("js-paragraph-style");
     document.querySelector("html").classList.add("js-body-background");
     document.querySelector(".theme").classList.add("js-theme");
+    document.querySelectorAll(".js-cart-content-item").forEach((value) => {
+      value.classList.add("js-cart-content-item-black");
+    });
 
     button.innerHTML = "Modo Claro";
   } else {
@@ -20,6 +23,10 @@ const changeAppereance = () => {
     document.querySelector("fieldset").classList.remove("js-paragraph-style");
     document.querySelector("html").classList.remove("js-body-background");
     document.querySelector(".theme").classList.remove("js-theme");
+    document.querySelectorAll(".js-cart-content-item").forEach((value) => {
+      value.classList.remove("js-cart-content-item-black");
+    });
+
     button.innerHTML = "Modo Escuro";
   }
 };

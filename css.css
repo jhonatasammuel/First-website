@@ -1,6 +1,7 @@
 body {
   font-family: "Times New Roman", Times, serif;
   font-size: 18px;
+  margin: 20px;
 }
 
 .theme {
@@ -53,4 +54,21 @@ fieldset {
 
 .content {
   font-family: "Times New Roman", Times, serif;
+}
+
+.cart-content-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  width: 400px;
+}
+
+.cart-content-item {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.js-cart-content-item-black {
+  border: 1px solid white;
 }
