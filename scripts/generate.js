@@ -159,6 +159,48 @@ const info = [
   },
 ];
 
+class Cart {
+  cartItems;
+
+  constructor() {
+    this.loadFromStorage();
+  }
+
+  saveToStorage() {
+    localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+  }
+
+  loadFromStorage() {
+    this.cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  }
+
+  addProduct(id) {
+    const product = info.find((product) => {
+      return product.id === id;
+    });
+
+    this.cartItems.push(product);
+
+    this.saveToStorage();
+  }
+
+  removeProduct(id) {
+    const index = this.cartItems.findIndex((product) => {
+      return product.id === id;
+    });
+
+    console.log(index);
+
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+
+      this.saveToStorage();
+    }
+  }
+}
+
+const cart = new Cart();
+
 function generateHtml() {
   let html = "";
   info.forEach((product) => {
@@ -168,10 +210,12 @@ function generateHtml() {
       </div>
       <button data-id="${product.id}"
       class="js-comprar-button">Comprar</button>
+      <button data-id="${product.id}"
+      class="js-remover-button">Remover</button>
       `;
   });
 
   document.querySelector(".js-content").innerHTML = html;
 }
 
-export { generateHtml };
+export { generateHtml, cart };
