@@ -252,8 +252,10 @@ function generateHtmlCart() {
 
   let totalPedidoCents = 0;
 
+  const darkMode = document.querySelector(".js-mode-button").innerHTML;
+
   cart.cartItems.forEach((cartItem) => {
-    html += `<div class="cart-content-item js-cart-content-item paragraph">
+    html += `<div class="cart-content-item js-cart-content-item paragraph ${darkMode === "Modo Claro" ? "js-paragraph-style js-cart-content-item-black" : ""}">
         <p>Nome: ${cartItem.name}</p>
         <p>Quantity: ${cartItem.quantity}</p>
         <p>Valor unitário: $${cartItem.priceCents / 100}</p>
@@ -263,7 +265,7 @@ function generateHtmlCart() {
     totalPedidoCents += cartItem.priceCents * cartItem.quantity;
   });
 
-  html += `<p class="paragraph">Valor total do pedido: $${totalPedidoCents / 100}</p>`;
+  html += `<p class="paragraph ${darkMode === "Modo Claro" ? "js-paragraph-style" : ""}">Valor total do pedido: $${totalPedidoCents / 100}</p>`;
 
   document.querySelector(".js-cart-content-container").innerHTML = html;
 }
