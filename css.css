@@ -72,3 +72,18 @@ fieldset {
 .js-cart-content-item-black {
   border: 1px solid white;
 }
+
+.content {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-cell {
+  width: 200px;
+  height: 400px;
+}
+
+.product-image {
+  height: 150px;
+}

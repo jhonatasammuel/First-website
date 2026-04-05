@@ -1,7 +1,7 @@
 const info = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
+    image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
     name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
     rating: {
       stars: 4.5,
@@ -12,7 +12,7 @@ const info = [
   },
   {
     id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-    image: "images/products/intermediate-composite-basketball.jpg",
+    image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
     name: "Intermediate Size Basketball",
     rating: {
       stars: 4,
@@ -36,7 +36,7 @@ const info = [
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
-    image: "images/products/black-2-slot-toaster.jpg",
+    image: "images/products/luxury-tower-set-6-piece.jpg",
     name: "2 Slot Toaster - Black",
     rating: {
       stars: 5,
@@ -47,7 +47,7 @@ const info = [
   },
   {
     id: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
-    image: "images/products/6-piece-white-dinner-plate-set.jpg",
+    image: "images/products/luxury-tower-set-6-piece.jpg",
     name: "6 Piece White Dinner Plate Set",
     rating: {
       stars: 4,
@@ -58,7 +58,7 @@ const info = [
   },
   {
     id: "8c9c52b5-5a19-4bcb-a5d1-158a74287c53",
-    image: "images/products/6-piece-non-stick-baking-set.webp",
+    image: "images/products/luxury-tower-set-6-piece.jpg",
     name: "6-Piece Nonstick, Carbon Steel Oven Bakeware Baking Set",
     rating: {
       stars: 4.5,
@@ -102,7 +102,7 @@ const info = [
   },
   {
     id: "58b4fc92-e98c-42aa-8c55-b6b79996769a",
-    image: "images/products/knit-athletic-sneakers-gray.jpg",
+    image: "images/products/liquid-laundry-detergent-plain.jpg",
     name: "Waterproof Knit Athletic Sneakers - Gray",
     rating: {
       stars: 4,
@@ -113,7 +113,7 @@ const info = [
   },
   {
     id: "5968897c-4d27-4872-89f6-5bcb052746d7",
-    image: "images/products/women-chiffon-beachwear-coverup-black.jpg",
+    image: "images/products/liquid-laundry-detergent-plain.jpg",
     name: "Women's Chiffon Beachwear Cover Up - Black",
     rating: {
       stars: 4.5,
@@ -137,7 +137,7 @@ const info = [
   },
   {
     id: "04701903-bc79-49c6-bc11-1af7e3651358",
-    image: "images/products/women-beach-sandals.jpg",
+    image: "images/products/round-sunglasses-black.jpg",
     name: "Women's Two Strap Buckle Sandals - Tan",
     rating: {
       stars: 4.5,
@@ -148,7 +148,7 @@ const info = [
   },
   {
     id: "901eb2ca-386d-432e-82f0-6fb1ee7bf969",
-    image: "images/products/blackout-curtain-set-beige.webp",
+    image: "images/products/round-sunglasses-black.jpg",
     name: "Blackout Curtains Set 4-Pack - Beige",
     rating: {
       stars: 4.5,
@@ -198,6 +198,7 @@ class Cart {
         name: product.name,
         priceCents: product.priceCents,
         quantity: 1,
+        image: product.image,
       };
 
       this.cartItems.push(cartItem);
@@ -233,14 +234,16 @@ const cart = new Cart();
 function generateHtml() {
   let html = "";
   info.forEach((product) => {
-    html += `<div>
+    html += `<div class="grid-cell">
+        <img class="product-image" src="${product.image}"/>
         <p class="paragraph">Nome: ${product.name}</p>
         <p class="paragraph">Price: $${product.priceCents}</p>
+
+        <button data-id="${product.id}"
+        class="js-comprar-button">Comprar</button>
+        <button data-id="${product.id}"
+        class="js-remover-button">Remover</button>
       </div>
-      <button data-id="${product.id}"
-      class="js-comprar-button">Comprar</button>
-      <button data-id="${product.id}"
-      class="js-remover-button">Remover</button>
       `;
   });
 
@@ -256,6 +259,7 @@ function generateHtmlCart() {
 
   cart.cartItems.forEach((cartItem) => {
     html += `<div class="cart-content-item js-cart-content-item paragraph ${darkMode === "Modo Claro" ? "js-paragraph-style js-cart-content-item-black" : ""}">
+        <img class="product-image" src="${cartItem.image}"/>
         <p>Nome: ${cartItem.name}</p>
         <p>Quantity: ${cartItem.quantity}</p>
         <p>Valor unitário: $${cartItem.priceCents / 100}</p>
